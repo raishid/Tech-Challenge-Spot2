@@ -1,0 +1,18 @@
+FROM oven/bun:latest
+
+ARG NUXT_PUBLIC_API_URL
+ENV NUXT_PUBLIC_API_URL=$NUXT_PUBLIC_API_URL
+
+RUN mkdir /app
+
+COPY frontend /app
+
+WORKDIR /app
+
+RUN bun install
+RUN bun run build
+
+
+CMD ["bun", "run", ".output/server/index.mjs"]
+
+EXPOSE 3000
