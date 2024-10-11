@@ -49,7 +49,7 @@ export async function get(shorten: string): Promise<responseGet> {
   console.log(response);
   
 
-  return (await response).json();
+  return await response.json();
 }
 
 export async function getHistory(page = 1): Promise<AcortadoResponse>
