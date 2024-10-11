@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { v4 } from "uuid";
 import { setCookie } from "cookies-next";
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -25,4 +26,9 @@ export function isValidUrl(url: string) {
   }
 
   return false;
+}
+
+export function copyToClipboard(text: string, callback: Function){
+  navigator.clipboard.writeText(text)
+    .then(() => callback())
 }

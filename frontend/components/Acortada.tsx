@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +12,7 @@ import { useUrl } from "nextjs-current-url";
 import { useMemo } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { copyToClipboard } from "@/lib/utils";
 
 export default function Acortada() {
   const { shorten, error } = useStore(useAcortadorStore);
@@ -27,10 +29,6 @@ export default function Acortada() {
     if (!shorten) return "";
     return `${protocol}//${hostname}${port ? `:${port}` : ""}/${shorten}`;
   }, [shorten, protocol, hostname, port]);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(shorteUrl).then(() => notify());
-  };
   return (
     <>
       <ToastContainer />
@@ -56,7 +54,7 @@ export default function Acortada() {
                 <Button
                   className="bg-second hover:bg-third"
                   size="icon"
-                  onClick={copyToClipboard}
+                  onClick={() => copyToClipboard(shorteUrl, notify)}
                 >
                   <Copy className="h-4 w-4" />
                 </Button>

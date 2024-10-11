@@ -1,5 +1,7 @@
 backend/vendor
 backend/composer.lock
-frontend/.nuxt
+frontend/.next
+frontend/.env
+frontend/next-env.d.ts
 frontend/node_modules
 frontend/bun.lockb

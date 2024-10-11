@@ -1,3 +1,6 @@
+import { getCookie } from 'cookies-next'
+import { AcortadoResponse } from '@/types'
+
 type payload = {
   user_id: string;
   url: string;
@@ -36,11 +39,36 @@ export async function get(shorten: string): Promise<responseGet> {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ?? "https://localhost:8000/api";
 
-  const response = fetch(`${apiUrl}/shorten/${shorten}`, {
+  const response = await fetch(`${apiUrl}/shorten/${shorten}`, {
     method: "GET",
     headers: {
       accept: "application/json",
     },
+  });
+
+  console.log(response);
+  
+
+  return (await response).json();
+}
+
+export async function getHistory(page = 1): Promise<AcortadoResponse>
+{
+  const u_id = getCookie("u_id");
+
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "https://localhost:8000/api";
+
+  const query = new URLSearchParams({
+    page: page.toString(),
+  });
+
+  const response = fetch(`${apiUrl}/${u_id}?${query}`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    },
+
   });
 
   return (await response).json();

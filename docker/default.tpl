@@ -16,6 +16,15 @@ server {
 
     set $skip_cache 0;
 
+    location /docs/ {
+        try_files $uri $uri/ /backend/public/index.php?$query_string;
+
+        # Client IP Handling for AWS ELB
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
     #location containe api/
     location /api/ {
         try_files $uri $uri/ /backend/public/index.php?$query_string;

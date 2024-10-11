@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Shortener;
 
-use App\Models\User;
 use App\Models\Shortener;
 use App\Services\Helpers;
 use App\Http\Controllers\Controller;
@@ -11,7 +10,53 @@ use App\Http\Requests\Shortener\StoreRequest;
 class StoreController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Crear un shortener
+     * @OA\Post (
+     *     path="/api/shorten",
+     *     tags={"Shortener"},
+     * @OA\RequestBody(
+     *    @OA\MediaType(
+     *        mediaType="application/x-www-form-urlencoded",
+     *        @OA\Schema(
+     *            @OA\Property(
+     *                property="url",
+     *                type="string",
+     *                example="https://imgur.com/gallery/uh-i-don-t-remember-saving-this-dSepCYe"
+     *            ),
+     *            @OA\Property(
+     *                property="user_id",
+     *                type="string",
+     *                example="25680da0-036b-4e9e-bc33-8f74495c853b" 
+     *            ),
+     *        )
+     *    )
+     *  ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Crear un shortener",
+     *         @OA\JsonContent(
+     *
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="data",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         example="https://imgur.com/gallery/uh-i-don-t-remember-saving-this-dSepCYe"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="code",
+     *                         type="string",
+     *                         example="dSepCYeH"
+     *                     ),
+     *                 )
+     *             ),
+     *        
+     *         )
+     *     )
+     * )
      */
     public function __invoke(StoreRequest $request)
     {

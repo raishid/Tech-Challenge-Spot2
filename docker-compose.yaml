@@ -59,36 +59,22 @@ services:
       main:
         aliases:
           - nginx
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: DockerBun
-  #     args:
-  #       NUXT_PUBLIC_API_URL: ${NUXT_PUBLIC_API_URL}
-  #   ports:
-  #     - "3000"
-  #   volumes:
-  #     - ./.env:/app/.env
-  #   networks:
-  #     main:
-  #       aliases:
-  #         - app
-  #   depends_on:
-  #     - nginx
-
-  # supervisor:
-  #   build:
-  #     context: .
-  #     dockerfile: DockerSupervisor
-  #   volumes:
-  #     - ./.env:/var/www/html/backend/.env
-  #   networks:
-  #     main:
-  #       aliases:
-  #         - supervisor
-  #   depends_on:
-  #       - db
-  #       - nginx
+  app:
+    build:
+      context: .
+      dockerfile: DockerBun
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    ports:
+      - "3000"
+    volumes:
+      - ./.env:/app/.env
+    networks:
+      main:
+        aliases:
+          - app
+    depends_on:
+      - nginx
 
 volumes:
   db_data:

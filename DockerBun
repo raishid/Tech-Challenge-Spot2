@@ -1,7 +1,7 @@
 FROM oven/bun:latest
 
-ARG NUXT_PUBLIC_API_URL
-ENV NUXT_PUBLIC_API_URL=$NUXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN mkdir /app
 
@@ -13,6 +13,6 @@ RUN bun install
 RUN bun run build
 
 
-CMD ["bun", "run", ".output/server/index.mjs"]
+CMD ["bun", "run", "start"]
 
 EXPOSE 3000
