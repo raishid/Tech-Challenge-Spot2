@@ -11,11 +11,12 @@ class RedirectShorten extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(RedirectRequest $request)
+    public function __invoke($shorten)
     {
-        $data = $request->validated();
+        $shorten = Shortener::where('code', $shorten)->firstOrFail();
 
-        $shorten = Shortener::where('code', $data['shorten'])->first();
+        $shorten->increment('visits');
+        $shorten->save();
 
         return response()->json([
             'url'   => $shorten->url,

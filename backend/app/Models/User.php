@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasFactory, HasUuids;
 
+    protected $fillable = [
+        'id',
+    ];
+
     public function shorteners()
     {
         return $this->hasMany(Shortener::class);

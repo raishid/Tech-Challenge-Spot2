@@ -20,11 +20,11 @@ class Helpers
 
   public static function verifyUserOrCreate(string $uuid)
   {
-    $user = User::where('uuid', $uuid)->first();
+    $user = User::where('id', $uuid)->first();
 
     if ($user == null) {
       $user = User::create([
-        'uuid' => $uuid,
+        'id' => $uuid,
       ]);
     }
 
