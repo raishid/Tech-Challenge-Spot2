@@ -24,6 +24,8 @@ Aparte de las variable de laravel al final del .env se debe configurar las sigui
 
 `NEXT_PUBLIC_API_URL` url del backend ejemplo `https://tuapibackend/api`
 
+`NEXT_USE_DOCKER` le dice a la app que esta usando docker `true|false`
+
 `DOMAIN` Dominio para el Nginx que usa el docker
 
 `DATABASE_PORT` Puerto de la base de datos externo

@@ -1,5 +1,5 @@
-import { getCookie } from 'cookies-next'
-import { AcortadoResponse } from '@/types'
+import { getCookie } from "cookies-next";
+import { AcortadoResponse } from "@/types";
 
 type payload = {
   user_id: string;
@@ -36,8 +36,13 @@ type responseGet = {
 };
 
 export async function get(shorten: string): Promise<responseGet> {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL ?? "https://localhost:8000/api";
+  let apiUrl;
+
+  if (process.env.NEXT_USE_DOCKER === "true") {
+    apiUrl = "http://nginx:5000/api";
+  } else {
+    apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "https://localhost:8000/api";
+  }
 
   const response = await fetch(`${apiUrl}/shorten/${shorten}`, {
     method: "GET",
@@ -47,13 +52,11 @@ export async function get(shorten: string): Promise<responseGet> {
   });
 
   console.log(response);
-  
 
   return await response.json();
 }
 
-export async function getHistory(page = 1): Promise<AcortadoResponse>
-{
+export async function getHistory(page = 1): Promise<AcortadoResponse> {
   const u_id = getCookie("u_id");
 
   const apiUrl =
@@ -68,7 +71,6 @@ export async function getHistory(page = 1): Promise<AcortadoResponse>
     headers: {
       accept: "application/json",
     },
-
   });
 
   return (await response).json();

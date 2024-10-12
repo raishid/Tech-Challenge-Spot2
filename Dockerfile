@@ -50,6 +50,4 @@ RUN cp .env.example /var/www/html/backend/.env
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-RUN php artisan migrate --force
-
 EXPOSE 5000
