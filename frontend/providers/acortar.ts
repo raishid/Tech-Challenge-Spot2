@@ -73,5 +73,20 @@ export async function getHistory(page = 1): Promise<AcortadoResponse> {
     },
   });
 
+  if ((await response).status === 404) {
+    return {
+      data: [],
+      links: {
+        next: null,
+        previous: null,
+        page: 0,
+        total: 0,
+        per_page: 0,
+      },
+      exception: "true",
+      isLoading: false,
+    };
+  }
+
   return (await response).json();
 }
