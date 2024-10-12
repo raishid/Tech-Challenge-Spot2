@@ -42,4 +42,4 @@ https://acortador.deladmin.xyz/
 
 ## Documentacion Api
 
-https://acortador.deladmin.xyz/documentation
+https://acortador.deladmin.xyz/api/documentation
