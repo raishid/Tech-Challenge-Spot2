@@ -38,8 +38,8 @@ Aparte de las variable de laravel al final del .env se debe configurar las sigui
 
 ## Demo
 
-https://acortaador.deladmin.xyz/
+https://acortador.deladmin.xyz/
 
 ## Documentacion Api
 
-https://acortaador.deladmin.xyz/documentation
+https://acortador.deladmin.xyz/documentation
